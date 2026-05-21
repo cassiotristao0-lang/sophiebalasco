@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { getWorld } from "@/data/worlds";
 import { characters } from "@/data/characters";
 import { useProgress, levelKey } from "@/hooks/use-progress";
@@ -11,15 +11,12 @@ export const Route = createFileRoute("/mundo/$worldId")({
   },
   component: MundoView,
   notFoundComponent: () => <p className="p-6">Mundo não encontrado.</p>,
-  loader: ({ params }) => {
-    const w = getWorld(Number(params.worldId));
-    if (!w) throw notFound();
-    return { world: w };
-  },
 });
 
 function MundoView() {
-  const { world } = Route.useLoaderData();
+  const { worldId } = Route.useParams();
+  const world = getWorld(Number(worldId));
+  if (!world) return <p className="p-6">Mundo não encontrado.</p>;
   const { progress } = useProgress();
   const guide = characters[world.guide];
 
