@@ -9,38 +9,108 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as EmBreveRouteImport } from './routes/em-breve'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MundoWorldIdRouteImport } from './routes/mundo.$worldId'
+import { Route as FaseWorldIdLevelIdRouteImport } from './routes/fase.$worldId.$levelId'
 
+const MapaRoute = MapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmBreveRoute = EmBreveRouteImport.update({
+  id: '/em-breve',
+  path: '/em-breve',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MundoWorldIdRoute = MundoWorldIdRouteImport.update({
+  id: '/mundo/$worldId',
+  path: '/mundo/$worldId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaseWorldIdLevelIdRoute = FaseWorldIdLevelIdRouteImport.update({
+  id: '/fase/$worldId/$levelId',
+  path: '/fase/$worldId/$levelId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/em-breve': typeof EmBreveRoute
+  '/mapa': typeof MapaRoute
+  '/mundo/$worldId': typeof MundoWorldIdRoute
+  '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/em-breve': typeof EmBreveRoute
+  '/mapa': typeof MapaRoute
+  '/mundo/$worldId': typeof MundoWorldIdRoute
+  '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/em-breve': typeof EmBreveRoute
+  '/mapa': typeof MapaRoute
+  '/mundo/$worldId': typeof MundoWorldIdRoute
+  '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/em-breve'
+    | '/mapa'
+    | '/mundo/$worldId'
+    | '/fase/$worldId/$levelId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/em-breve'
+    | '/mapa'
+    | '/mundo/$worldId'
+    | '/fase/$worldId/$levelId'
+  id:
+    | '__root__'
+    | '/'
+    | '/em-breve'
+    | '/mapa'
+    | '/mundo/$worldId'
+    | '/fase/$worldId/$levelId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EmBreveRoute: typeof EmBreveRoute
+  MapaRoute: typeof MapaRoute
+  MundoWorldIdRoute: typeof MundoWorldIdRoute
+  FaseWorldIdLevelIdRoute: typeof FaseWorldIdLevelIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/mapa': {
+      id: '/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/em-breve': {
+      id: '/em-breve'
+      path: '/em-breve'
+      fullPath: '/em-breve'
+      preLoaderRoute: typeof EmBreveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +118,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mundo/$worldId': {
+      id: '/mundo/$worldId'
+      path: '/mundo/$worldId'
+      fullPath: '/mundo/$worldId'
+      preLoaderRoute: typeof MundoWorldIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fase/$worldId/$levelId': {
+      id: '/fase/$worldId/$levelId'
+      path: '/fase/$worldId/$levelId'
+      fullPath: '/fase/$worldId/$levelId'
+      preLoaderRoute: typeof FaseWorldIdLevelIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EmBreveRoute: EmBreveRoute,
+  MapaRoute: MapaRoute,
+  MundoWorldIdRoute: MundoWorldIdRoute,
+  FaseWorldIdLevelIdRoute: FaseWorldIdLevelIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
