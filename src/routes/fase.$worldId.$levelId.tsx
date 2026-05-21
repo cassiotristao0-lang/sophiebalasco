@@ -41,11 +41,11 @@ function FaseView() {
 
   function next() {
     if (isLast) {
-      const total = level.questions.length;
+      const total = level!.questions.length;
       const correct = correctCount;
       const pct = Math.round((correct / total) * 100);
       const coins = correct * 10 + pointsNoHint * 5 + (pct === 100 ? 50 : 0);
-      recordLevel(world.id, level.id, pct, coins);
+      recordLevel(world!.id, level!.id, pct, coins);
       setDone(true);
     } else {
       setIdx(i => i + 1);
