@@ -4,6 +4,7 @@ import { characters } from "@/data/characters";
 import { useProgress } from "@/hooks/use-progress";
 import { useState } from "react";
 import { ArrowLeft, Check, X, Lightbulb, Sparkles, Star } from "lucide-react";
+import { CharacterAvatar } from "@/components/CharacterAvatar";
 
 export const Route = createFileRoute("/fase/$worldId/$levelId")({
   component: FaseView,

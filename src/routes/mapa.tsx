@@ -50,7 +50,7 @@ function MapaMundos() {
                   <h3 className="font-display font-extrabold text-lg leading-tight">{w.name}</h3>
                   <p className="text-xs text-white/80">Guia: {guide.name}</p>
                 </div>
-                <div className="text-2xl">{guide.emoji}</div>
+                <img src={guide.image} alt={guide.name} loading="lazy" className="w-16 h-16 object-contain drop-shadow-lg" />
               </div>
               <div className="mt-3 flex items-center gap-2">
                 <div className="flex-1 h-2 bg-white/30 rounded-full overflow-hidden">
