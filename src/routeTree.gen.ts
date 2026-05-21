@@ -9,15 +9,33 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as EmBreveRouteImport } from './routes/em-breve'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MundoWorldIdRouteImport } from './routes/mundo.$worldId'
 import { Route as FaseWorldIdLevelIdRouteImport } from './routes/fase.$worldId.$levelId'
 
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MapaRoute = MapaRouteImport.update({
   id: '/mapa',
   path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EmBreveRoute = EmBreveRouteImport.update({
@@ -44,14 +62,20 @@ const FaseWorldIdLevelIdRoute = FaseWorldIdLevelIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/em-breve': typeof EmBreveRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/mundo/$worldId': typeof MundoWorldIdRoute
   '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/em-breve': typeof EmBreveRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/mundo/$worldId': typeof MundoWorldIdRoute
   '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
 }
@@ -59,7 +83,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/em-breve': typeof EmBreveRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/mundo/$worldId': typeof MundoWorldIdRoute
   '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
 }
@@ -68,21 +95,30 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/em-breve'
+    | '/forgot-password'
+    | '/login'
     | '/mapa'
+    | '/reset-password'
     | '/mundo/$worldId'
     | '/fase/$worldId/$levelId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/em-breve'
+    | '/forgot-password'
+    | '/login'
     | '/mapa'
+    | '/reset-password'
     | '/mundo/$worldId'
     | '/fase/$worldId/$levelId'
   id:
     | '__root__'
     | '/'
     | '/em-breve'
+    | '/forgot-password'
+    | '/login'
     | '/mapa'
+    | '/reset-password'
     | '/mundo/$worldId'
     | '/fase/$worldId/$levelId'
   fileRoutesById: FileRoutesById
@@ -90,18 +126,42 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EmBreveRoute: typeof EmBreveRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  LoginRoute: typeof LoginRoute
   MapaRoute: typeof MapaRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   MundoWorldIdRoute: typeof MundoWorldIdRoute
   FaseWorldIdLevelIdRoute: typeof FaseWorldIdLevelIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mapa': {
       id: '/mapa'
       path: '/mapa'
       fullPath: '/mapa'
       preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/em-breve': {
@@ -138,10 +198,23 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EmBreveRoute: EmBreveRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  LoginRoute: LoginRoute,
   MapaRoute: MapaRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   MundoWorldIdRoute: MundoWorldIdRoute,
   FaseWorldIdLevelIdRoute: FaseWorldIdLevelIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
