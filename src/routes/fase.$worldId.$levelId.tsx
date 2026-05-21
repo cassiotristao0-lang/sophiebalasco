@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { getWorld } from "@/data/worlds";
 import { characters } from "@/data/characters";
 import { useProgress } from "@/hooks/use-progress";
@@ -7,18 +7,13 @@ import { ArrowLeft, Check, X, Lightbulb, Sparkles, Star } from "lucide-react";
 
 export const Route = createFileRoute("/fase/$worldId/$levelId")({
   component: FaseView,
-  loader: ({ params }) => {
-    const w = getWorld(Number(params.worldId));
-    const l = w?.levels.find(x => x.id === Number(params.levelId));
-    if (!w || !l) throw notFound();
-    return { world: w, level: l };
-  },
   notFoundComponent: () => <p className="p-6">Fase não encontrada.</p>,
 });
 
 function FaseView() {
-  const { world, level } = Route.useLoaderData();
-  const guide = characters[world.guide];
+  const { worldId, levelId } = Route.useParams();
+  const world = getWorld(Number(worldId));
+  const level = world?.levels.find(x => x.id === Number(levelId));
   const navigate = useNavigate();
   const { recordLevel } = useProgress();
 
