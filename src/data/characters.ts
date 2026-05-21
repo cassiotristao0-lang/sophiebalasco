@@ -1,3 +1,11 @@
+import sophieImg from "@/assets/char-sophie.png";
+import cassioImg from "@/assets/char-cassio.png";
+import camilaImg from "@/assets/char-camila.png";
+import luciaImg from "@/assets/char-lucia.png";
+import antonioImg from "@/assets/char-antonio.png";
+import bernardoImg from "@/assets/char-bernardo.png";
+import pixImg from "@/assets/char-pix.png";
+
 export type CharacterId =
   | "sophie" | "cassio" | "camila" | "lucia" | "antonio" | "bernardo" | "pix";
 
@@ -5,8 +13,8 @@ export interface Character {
   id: CharacterId;
   name: string;
   role: string;
-  emoji: string;            // avatar visual (cartoon emoji até gerarmos arte)
-  gradient: string;         // tailwind class
+  image: string;
+  gradient: string;
   catchphrase: string;
   helpsWith: string;
 }
@@ -16,7 +24,7 @@ export const characters: Record<CharacterId, Character> = {
     id: "sophie",
     name: "Princesa Sophie",
     role: "A heroína da aventura",
-    emoji: "👸🏽",
+    image: sophieImg,
     gradient: "from-pink-300 to-fuchsia-400",
     catchphrase: "Vamos aprender brincando!",
     helpsWith: "Você é a Sophie!",
@@ -25,7 +33,7 @@ export const characters: Record<CharacterId, Character> = {
     id: "cassio",
     name: "Pai Cássio",
     role: "Forte, divertido e protetor",
-    emoji: "👨🏿‍🦲",
+    image: cassioImg,
     gradient: "from-amber-300 to-orange-400",
     catchphrase: "Calma, princesa. Vamos pensar juntos.",
     helpsWith: "Matemática e raciocínio",
@@ -34,7 +42,7 @@ export const characters: Record<CharacterId, Character> = {
     id: "camila",
     name: "Mãe Camila",
     role: "Carinhosa e inteligente",
-    emoji: "👩🏻",
+    image: camilaImg,
     gradient: "from-rose-300 to-pink-400",
     catchphrase: "Leia com atenção, meu amor. A resposta está no detalhe.",
     helpsWith: "Português e leitura",
@@ -43,7 +51,7 @@ export const characters: Record<CharacterId, Character> = {
     id: "lucia",
     name: "Vó Lucia",
     role: "Doce, sábia e paciente",
-    emoji: "👵🏽",
+    image: luciaImg,
     gradient: "from-emerald-300 to-teal-400",
     catchphrase: "Aprender é como cuidar de uma plantinha.",
     helpsWith: "Ciências e natureza",
@@ -52,7 +60,7 @@ export const characters: Record<CharacterId, Character> = {
     id: "antonio",
     name: "Vô Antônio",
     role: "Calmo, sábio e observador",
-    emoji: "👴🏽",
+    image: antonioImg,
     gradient: "from-sky-300 to-blue-400",
     catchphrase: "Todo caminho fica fácil quando entendemos o mapa.",
     helpsWith: "Geografia e mapas",
@@ -61,7 +69,7 @@ export const characters: Record<CharacterId, Character> = {
     id: "bernardo",
     name: "Primo Bernardo",
     role: "Animado e parceiro",
-    emoji: "🧒🏽",
+    image: bernardoImg,
     gradient: "from-yellow-300 to-amber-400",
     catchphrase: "Bora, Sophie! Essa fase é nossa!",
     helpsWith: "Mini games e revisão",
@@ -70,7 +78,7 @@ export const characters: Record<CharacterId, Character> = {
     id: "pix",
     name: "Pix, o Golden Sabichão",
     role: "Cachorro fofo e inteligente",
-    emoji: "🐶",
+    image: pixImg,
     gradient: "from-amber-200 to-yellow-300",
     catchphrase: "Au-au! Dica do Pix a caminho!",
     helpsWith: "Dá dicas em todas as fases",
