@@ -16,6 +16,8 @@ function FaseView() {
   const level = world?.levels.find(x => x.id === Number(levelId));
   const navigate = useNavigate();
   const { recordLevel } = useProgress();
+  if (!world || !level) return <p className="p-6">Fase não encontrada.</p>;
+  const guide = characters[world.guide];
 
   const [idx, setIdx] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
