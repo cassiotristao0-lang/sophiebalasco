@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CharacterAvatar } from "@/components/CharacterAvatar";
 import { useProgress } from "@/hooks/use-progress";
-import { Sparkles, Map, Star, Award, Settings, ShieldCheck, Calendar, BookOpen } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
+import { Sparkles, Map, Star, Award, Settings, ShieldCheck, Calendar, BookOpen, LogIn, LogOut } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -15,8 +17,22 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const { progress } = useProgress();
+  const { user } = useAuth();
   return (
     <main className="min-h-screen px-4 py-6 max-w-md mx-auto">
+      <div className="flex justify-end mb-2">
+        {user ? (
+          <button onClick={() => supabase.auth.signOut()}
+            className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full bg-white shadow-soft active:scale-95">
+            <LogOut className="w-3 h-3" /> Sair
+          </button>
+        ) : (
+          <Link to="/login"
+            className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full bg-white shadow-soft active:scale-95">
+            <LogIn className="w-3 h-3" /> Entrar
+          </Link>
+        )}
+      </div>
       <header className="text-center mb-4">
         <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/70 backdrop-blur shadow-soft mb-2">
           <Sparkles className="w-4 h-4 text-magic" />
@@ -25,6 +41,9 @@ function Home() {
         <h1 className="font-display text-3xl sm:text-4xl font-extrabold leading-tight bg-gradient-magic bg-clip-text text-transparent">
           As Aventuras da<br />Princesa Sophie
         </h1>
+        {user && (
+          <p className="text-xs text-muted-foreground mt-1">Olá, {user.email} 👋</p>
+        )}
       </header>
 
       {/* HERO Sophie + Pix */}
