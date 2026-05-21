@@ -4,6 +4,7 @@ import { characters } from "@/data/characters";
 import { useProgress } from "@/hooks/use-progress";
 import { useState } from "react";
 import { ArrowLeft, Check, X, Lightbulb, Sparkles, Star } from "lucide-react";
+import { CharacterAvatar } from "@/components/CharacterAvatar";
 
 export const Route = createFileRoute("/fase/$worldId/$levelId")({
   component: FaseView,
@@ -109,7 +110,7 @@ function FaseView() {
 
       {/* Guide bubble */}
       <div className="flex items-center gap-2 mb-3 bg-white rounded-2xl p-2 shadow-soft">
-        <div className="text-3xl">{guide.emoji}</div>
+        <CharacterAvatar id={guide.id} size="sm" />
         <p className="text-xs font-bold text-foreground">{guide.name} está com você!</p>
       </div>
 

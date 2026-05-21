@@ -34,7 +34,7 @@ function MundoView() {
 
       <div className={`rounded-3xl bg-gradient-to-br ${world.gradient} p-5 shadow-magic mb-5 text-white`}>
         <div className="flex items-center gap-3">
-          <div className="text-5xl">{guide.emoji}</div>
+          <img src={guide.image} alt={guide.name} loading="lazy" className="w-20 h-20 object-contain drop-shadow-lg" />
           <div>
             <p className="text-xs uppercase tracking-wide opacity-80">Seu guia neste mundo</p>
             <p className="font-display font-extrabold text-lg">{guide.name}</p>
