@@ -50,13 +50,13 @@ function Home() {
       {/* Botões principais */}
       <section className="grid grid-cols-2 gap-3">
         <BigButton to="/mapa" icon={<Map className="w-6 h-6" />} label="Jogar" sub="Mapa dos Mundos" primary />
-        <BigButton to="/missao" icon={<Calendar className="w-6 h-6" />} label="Missão do Dia" sub="5 perguntas" />
+        <BigButton to="/em-breve" icon={<Calendar className="w-6 h-6" />} label="Missão do Dia" sub="5 perguntas" />
         <BigButton to="/mapa" icon={<BookOpen className="w-6 h-6" />} label="Meus Mundos" sub={`${progress.medals.length}/9 conquistados`} />
-        <BigButton to="/revisar" icon={<Star className="w-6 h-6" />} label="Revisar" sub="Pratique mais!" />
-        <BigButton to="/medalhas" icon={<Award className="w-6 h-6" />} label="Minhas Medalhas" sub="Coleção" />
-        <BigButton to="/avatar" icon={<Sparkles className="w-6 h-6" />} label="Avatar" sub="Personalize" />
-        <BigButton to="/pais" icon={<ShieldCheck className="w-6 h-6" />} label="Área dos Pais" sub="Protegida" />
-        <BigButton to="/configuracoes" icon={<Settings className="w-6 h-6" />} label="Ajustes" sub="Sons, etc." />
+        <BigButton to="/em-breve" icon={<Star className="w-6 h-6" />} label="Revisar" sub="Pratique mais!" />
+        <BigButton to="/em-breve" icon={<Award className="w-6 h-6" />} label="Minhas Medalhas" sub="Coleção" />
+        <BigButton to="/em-breve" icon={<Sparkles className="w-6 h-6" />} label="Avatar" sub="Personalize" />
+        <BigButton to="/em-breve" icon={<ShieldCheck className="w-6 h-6" />} label="Área dos Pais" sub="Protegida" />
+        <BigButton to="/em-breve" icon={<Settings className="w-6 h-6" />} label="Ajustes" sub="Sons, etc." />
       </section>
 
       <footer className="text-center text-xs text-muted-foreground mt-6">
