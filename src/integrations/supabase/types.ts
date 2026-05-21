@@ -14,13 +14,192 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      audio_preferences: {
+        Row: {
+          child_profile_id: string
+          id: string
+          music_enabled: boolean
+          music_volume: number
+          sfx_enabled: boolean
+          sfx_volume: number
+        }
+        Insert: {
+          child_profile_id: string
+          id?: string
+          music_enabled?: boolean
+          music_volume?: number
+          sfx_enabled?: boolean
+          sfx_volume?: number
+        }
+        Update: {
+          child_profile_id?: string
+          id?: string
+          music_enabled?: boolean
+          music_volume?: number
+          sfx_enabled?: boolean
+          sfx_volume?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audio_preferences_child_profile_id_fkey"
+            columns: ["child_profile_id"]
+            isOneToOne: true
+            referencedRelation: "child_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      child_profiles: {
+        Row: {
+          age: number | null
+          avatar_data: Json | null
+          child_name: string
+          created_at: string
+          current_level: number
+          current_world: number
+          id: string
+          parent_user_id: string
+          total_coins: number
+          total_points: number
+          total_stars: number
+        }
+        Insert: {
+          age?: number | null
+          avatar_data?: Json | null
+          child_name: string
+          created_at?: string
+          current_level?: number
+          current_world?: number
+          id?: string
+          parent_user_id: string
+          total_coins?: number
+          total_points?: number
+          total_stars?: number
+        }
+        Update: {
+          age?: number | null
+          avatar_data?: Json | null
+          child_name?: string
+          created_at?: string
+          current_level?: number
+          current_world?: number
+          id?: string
+          parent_user_id?: string
+          total_coins?: number
+          total_points?: number
+          total_stars?: number
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          id: string
+          name: string | null
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          id: string
+          name?: string | null
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          id?: string
+          name?: string | null
+          username?: string | null
+        }
+        Relationships: []
+      }
+      progress: {
+        Row: {
+          child_profile_id: string
+          completed: boolean
+          completed_at: string | null
+          correct_answers: number
+          id: string
+          level_id: number
+          score: number
+          stars: number
+          world_id: number
+          wrong_answers: number
+        }
+        Insert: {
+          child_profile_id: string
+          completed?: boolean
+          completed_at?: string | null
+          correct_answers?: number
+          id?: string
+          level_id: number
+          score?: number
+          stars?: number
+          world_id: number
+          wrong_answers?: number
+        }
+        Update: {
+          child_profile_id?: string
+          completed?: boolean
+          completed_at?: string | null
+          correct_answers?: number
+          id?: string
+          level_id?: number
+          score?: number
+          stars?: number
+          world_id?: number
+          wrong_answers?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "progress_child_profile_id_fkey"
+            columns: ["child_profile_id"]
+            isOneToOne: false
+            referencedRelation: "child_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rewards: {
+        Row: {
+          child_profile_id: string
+          id: string
+          reward_name: string
+          reward_type: string
+          unlocked_at: string
+        }
+        Insert: {
+          child_profile_id: string
+          id?: string
+          reward_name: string
+          reward_type: string
+          unlocked_at?: string
+        }
+        Update: {
+          child_profile_id?: string
+          id?: string
+          reward_name?: string
+          reward_type?: string
+          unlocked_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rewards_child_profile_id_fkey"
+            columns: ["child_profile_id"]
+            isOneToOne: false
+            referencedRelation: "child_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      owns_child: { Args: { _child_id: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
