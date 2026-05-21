@@ -37,7 +37,7 @@ function MapaMundos() {
               key={w.id}
               to="/mundo/$worldId"
               params={{ worldId: String(w.id) }}
-              disabled={locked}
+              
               className={`block rounded-3xl bg-gradient-to-br ${w.gradient} p-4 shadow-magic relative overflow-hidden ${locked ? "opacity-60 pointer-events-none" : "active:scale-[0.98] transition-transform"}`}
             >
               <div className="flex items-center gap-3">

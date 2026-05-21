@@ -54,7 +54,7 @@ function MundoView() {
               key={level.id}
               to="/fase/$worldId/$levelId"
               params={{ worldId: String(world.id), levelId: String(level.id) }}
-              disabled={locked}
+              
               className={`flex items-center gap-3 rounded-2xl bg-white p-3 shadow-soft ${locked ? "opacity-50 pointer-events-none" : "active:scale-[0.98] transition-transform"}`}
             >
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-display font-extrabold text-lg ${lp?.completed ? "bg-success text-white" : "bg-secondary"}`}>
