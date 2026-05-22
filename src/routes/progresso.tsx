@@ -50,7 +50,7 @@ function ProgressoPage() {
             return (
               <div key={world.id} className="rounded-2xl bg-secondary/40 p-3">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="font-bold text-sm">{world.emoji} {world.name}</span>
+                  <span className="font-bold text-sm">{world.icon} {world.name}</span>
                   <span className="text-xs font-bold text-muted-foreground">{done}/{total}</span>
                 </div>
                 <div className="h-2 rounded-full bg-white overflow-hidden">
