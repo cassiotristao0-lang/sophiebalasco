@@ -10,19 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as ProgressoRouteImport } from './routes/progresso'
+import { Route as MedalhasRouteImport } from './routes/medalhas'
 import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as EmBreveRouteImport } from './routes/em-breve'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as MedalhasRouteImport } from './routes/medalhas'
 import { Route as AvatarRouteImport } from './routes/avatar'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as MundoWorldIdRouteImport } from './routes/mundo.$worldId'
 import { Route as FaseWorldIdLevelIdRouteImport } from './routes/fase.$worldId.$levelId'
 
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgressoRoute = ProgressoRouteImport.update({
+  id: '/progresso',
+  path: '/progresso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MedalhasRoute = MedalhasRouteImport.update({
+  id: '/medalhas',
+  path: '/medalhas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MapaRoute = MapaRouteImport.update({
@@ -45,19 +56,14 @@ const EmBreveRoute = EmBreveRouteImport.update({
   path: '/em-breve',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MedalhasRoute = MedalhasRouteImport.update({
-  id: '/medalhas',
-  path: '/medalhas',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AvatarRoute = AvatarRouteImport.update({
   id: '/avatar',
   path: '/avatar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MundoWorldIdRoute = MundoWorldIdRouteImport.update({
@@ -73,24 +79,26 @@ const FaseWorldIdLevelIdRoute = FaseWorldIdLevelIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/avatar': typeof AvatarRoute
   '/em-breve': typeof EmBreveRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
   '/medalhas': typeof MedalhasRoute
-  '/avatar': typeof AvatarRoute
+  '/progresso': typeof ProgressoRoute
   '/reset-password': typeof ResetPasswordRoute
   '/mundo/$worldId': typeof MundoWorldIdRoute
   '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/avatar': typeof AvatarRoute
   '/em-breve': typeof EmBreveRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
   '/medalhas': typeof MedalhasRoute
-  '/avatar': typeof AvatarRoute
+  '/progresso': typeof ProgressoRoute
   '/reset-password': typeof ResetPasswordRoute
   '/mundo/$worldId': typeof MundoWorldIdRoute
   '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
@@ -98,12 +106,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/avatar': typeof AvatarRoute
   '/em-breve': typeof EmBreveRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
   '/medalhas': typeof MedalhasRoute
-  '/avatar': typeof AvatarRoute
+  '/progresso': typeof ProgressoRoute
   '/reset-password': typeof ResetPasswordRoute
   '/mundo/$worldId': typeof MundoWorldIdRoute
   '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
@@ -112,36 +121,39 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/avatar'
     | '/em-breve'
     | '/forgot-password'
     | '/login'
     | '/mapa'
     | '/medalhas'
-    | '/avatar'
+    | '/progresso'
     | '/reset-password'
     | '/mundo/$worldId'
     | '/fase/$worldId/$levelId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/avatar'
     | '/em-breve'
     | '/forgot-password'
     | '/login'
     | '/mapa'
     | '/medalhas'
-    | '/avatar'
+    | '/progresso'
     | '/reset-password'
     | '/mundo/$worldId'
     | '/fase/$worldId/$levelId'
   id:
     | '__root__'
     | '/'
+    | '/avatar'
     | '/em-breve'
     | '/forgot-password'
     | '/login'
     | '/mapa'
     | '/medalhas'
-    | '/avatar'
+    | '/progresso'
     | '/reset-password'
     | '/mundo/$worldId'
     | '/fase/$worldId/$levelId'
@@ -149,12 +161,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AvatarRoute: typeof AvatarRoute
   EmBreveRoute: typeof EmBreveRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
   MapaRoute: typeof MapaRoute
   MedalhasRoute: typeof MedalhasRoute
-  AvatarRoute: typeof AvatarRoute
+  ProgressoRoute: typeof ProgressoRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   MundoWorldIdRoute: typeof MundoWorldIdRoute
   FaseWorldIdLevelIdRoute: typeof FaseWorldIdLevelIdRoute
@@ -167,6 +180,20 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/progresso': {
+      id: '/progresso'
+      path: '/progresso'
+      fullPath: '/progresso'
+      preLoaderRoute: typeof ProgressoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medalhas': {
+      id: '/medalhas'
+      path: '/medalhas'
+      fullPath: '/medalhas'
+      preLoaderRoute: typeof MedalhasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mapa': {
@@ -183,20 +210,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/medalhas': {
-      id: '/medalhas'
-      path: '/medalhas'
-      fullPath: '/medalhas'
-      preLoaderRoute: typeof MedalhasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/avatar': {
-      id: '/avatar'
-      path: '/avatar'
-      fullPath: '/avatar'
-      preLoaderRoute: typeof AvatarRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/forgot-password': {
       id: '/forgot-password'
       path: '/forgot-password'
@@ -209,6 +222,13 @@ declare module '@tanstack/react-router' {
       path: '/em-breve'
       fullPath: '/em-breve'
       preLoaderRoute: typeof EmBreveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/avatar': {
+      id: '/avatar'
+      path: '/avatar'
+      fullPath: '/avatar'
+      preLoaderRoute: typeof AvatarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -237,12 +257,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AvatarRoute: AvatarRoute,
   EmBreveRoute: EmBreveRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
   MapaRoute: MapaRoute,
   MedalhasRoute: MedalhasRoute,
-  AvatarRoute: AvatarRoute,
+  ProgressoRoute: ProgressoRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   MundoWorldIdRoute: MundoWorldIdRoute,
   FaseWorldIdLevelIdRoute: FaseWorldIdLevelIdRoute,
@@ -250,3 +271,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
