@@ -10,16 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
-import { Route as ProgressoRouteImport } from './routes/progresso'
-import { Route as PaisRouteImport } from './routes/pais'
-import { Route as MissaoDiaRouteImport } from './routes/missao-dia'
 import { Route as MedalhasRouteImport } from './routes/medalhas'
 import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as EmBreveRouteImport } from './routes/em-breve'
 import { Route as AvatarRouteImport } from './routes/avatar'
-import { Route as AjustesRouteImport } from './routes/ajustes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MundoWorldIdRouteImport } from './routes/mundo.$worldId'
 import { Route as FaseWorldIdLevelIdRouteImport } from './routes/fase.$worldId.$levelId'
@@ -27,21 +23,6 @@ import { Route as FaseWorldIdLevelIdRouteImport } from './routes/fase.$worldId.$
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProgressoRoute = ProgressoRouteImport.update({
-  id: '/progresso',
-  path: '/progresso',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PaisRoute = PaisRouteImport.update({
-  id: '/pais',
-  path: '/pais',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MissaoDiaRoute = MissaoDiaRouteImport.update({
-  id: '/missao-dia',
-  path: '/missao-dia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MedalhasRoute = MedalhasRouteImport.update({
@@ -74,11 +55,6 @@ const AvatarRoute = AvatarRouteImport.update({
   path: '/avatar',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AjustesRoute = AjustesRouteImport.update({
-  id: '/ajustes',
-  path: '/ajustes',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -97,32 +73,24 @@ const FaseWorldIdLevelIdRoute = FaseWorldIdLevelIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/ajustes': typeof AjustesRoute
   '/avatar': typeof AvatarRoute
   '/em-breve': typeof EmBreveRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
   '/medalhas': typeof MedalhasRoute
-  '/missao-dia': typeof MissaoDiaRoute
-  '/pais': typeof PaisRoute
-  '/progresso': typeof ProgressoRoute
   '/reset-password': typeof ResetPasswordRoute
   '/mundo/$worldId': typeof MundoWorldIdRoute
   '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/ajustes': typeof AjustesRoute
   '/avatar': typeof AvatarRoute
   '/em-breve': typeof EmBreveRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
   '/medalhas': typeof MedalhasRoute
-  '/missao-dia': typeof MissaoDiaRoute
-  '/pais': typeof PaisRoute
-  '/progresso': typeof ProgressoRoute
   '/reset-password': typeof ResetPasswordRoute
   '/mundo/$worldId': typeof MundoWorldIdRoute
   '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
@@ -130,16 +98,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/ajustes': typeof AjustesRoute
   '/avatar': typeof AvatarRoute
   '/em-breve': typeof EmBreveRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
   '/medalhas': typeof MedalhasRoute
-  '/missao-dia': typeof MissaoDiaRoute
-  '/pais': typeof PaisRoute
-  '/progresso': typeof ProgressoRoute
   '/reset-password': typeof ResetPasswordRoute
   '/mundo/$worldId': typeof MundoWorldIdRoute
   '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
@@ -148,48 +112,36 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/ajustes'
     | '/avatar'
     | '/em-breve'
     | '/forgot-password'
     | '/login'
     | '/mapa'
     | '/medalhas'
-    | '/missao-dia'
-    | '/pais'
-    | '/progresso'
     | '/reset-password'
     | '/mundo/$worldId'
     | '/fase/$worldId/$levelId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/ajustes'
     | '/avatar'
     | '/em-breve'
     | '/forgot-password'
     | '/login'
     | '/mapa'
     | '/medalhas'
-    | '/missao-dia'
-    | '/pais'
-    | '/progresso'
     | '/reset-password'
     | '/mundo/$worldId'
     | '/fase/$worldId/$levelId'
   id:
     | '__root__'
     | '/'
-    | '/ajustes'
     | '/avatar'
     | '/em-breve'
     | '/forgot-password'
     | '/login'
     | '/mapa'
     | '/medalhas'
-    | '/missao-dia'
-    | '/pais'
-    | '/progresso'
     | '/reset-password'
     | '/mundo/$worldId'
     | '/fase/$worldId/$levelId'
@@ -197,16 +149,12 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AjustesRoute: typeof AjustesRoute
   AvatarRoute: typeof AvatarRoute
   EmBreveRoute: typeof EmBreveRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
   MapaRoute: typeof MapaRoute
   MedalhasRoute: typeof MedalhasRoute
-  MissaoDiaRoute: typeof MissaoDiaRoute
-  PaisRoute: typeof PaisRoute
-  ProgressoRoute: typeof ProgressoRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   MundoWorldIdRoute: typeof MundoWorldIdRoute
   FaseWorldIdLevelIdRoute: typeof FaseWorldIdLevelIdRoute
@@ -219,27 +167,6 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/progresso': {
-      id: '/progresso'
-      path: '/progresso'
-      fullPath: '/progresso'
-      preLoaderRoute: typeof ProgressoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pais': {
-      id: '/pais'
-      path: '/pais'
-      fullPath: '/pais'
-      preLoaderRoute: typeof PaisRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/missao-dia': {
-      id: '/missao-dia'
-      path: '/missao-dia'
-      fullPath: '/missao-dia'
-      preLoaderRoute: typeof MissaoDiaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/medalhas': {
@@ -284,13 +211,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AvatarRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/ajustes': {
-      id: '/ajustes'
-      path: '/ajustes'
-      fullPath: '/ajustes'
-      preLoaderRoute: typeof AjustesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -317,16 +237,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AjustesRoute: AjustesRoute,
   AvatarRoute: AvatarRoute,
   EmBreveRoute: EmBreveRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
   MapaRoute: MapaRoute,
   MedalhasRoute: MedalhasRoute,
-  MissaoDiaRoute: MissaoDiaRoute,
-  PaisRoute: PaisRoute,
-  ProgressoRoute: ProgressoRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   MundoWorldIdRoute: MundoWorldIdRoute,
   FaseWorldIdLevelIdRoute: FaseWorldIdLevelIdRoute,
@@ -334,3 +250,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

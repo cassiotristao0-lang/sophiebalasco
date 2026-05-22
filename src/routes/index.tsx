@@ -3,7 +3,8 @@ import { CharacterAvatar } from "@/components/CharacterAvatar";
 import { useProgress } from "@/hooks/use-progress";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { Sparkles, Map, TrendingUp, Award, Settings, ShieldCheck, Calendar, BookOpen, LogIn, LogOut } from "lucide-react";
+import { Sparkles, Map, Star, Award, Settings, ShieldCheck, Calendar, BookOpen, LogIn, LogOut } from "lucide-react";
+import familiaCompleta from "@/assets/familia_completa.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,17 +47,36 @@ function Home() {
         )}
       </header>
 
-      {/* HERO Sophie + Pix */}
-      <section className="relative rounded-3xl bg-gradient-magic p-6 shadow-magic mb-4 overflow-hidden">
-        <div className="absolute -top-4 -right-4 text-5xl opacity-30 animate-float">⭐</div>
-        <div className="absolute bottom-2 left-2 text-3xl opacity-30 animate-float" style={{ animationDelay: "0.5s" }}>✨</div>
-        <div className="flex items-end justify-center gap-3 mb-3">
-          <CharacterAvatar id="sophie" size="xl" bounce />
-          <CharacterAvatar id="pix" size="lg" bounce />
+      {/* HERO com a arte oficial da família */}
+      <section className="relative rounded-3xl bg-gradient-magic p-2 shadow-magic mb-4 overflow-hidden border-4 border-white">
+        <img
+          src={familiaCompleta}
+          alt="Família da Sophie em aventura educativa"
+          className="w-full rounded-[1.35rem] object-cover shadow-soft"
+          loading="eager"
+        />
+        <div className="absolute left-3 right-3 bottom-3 rounded-2xl bg-white/85 backdrop-blur px-3 py-2 shadow-soft">
+          <p className="text-center font-display font-extrabold text-sm text-magic">
+            Sophie, Pix e a família prontos para aprender brincando! 👑🐾
+          </p>
         </div>
-        <p className="text-center text-primary-foreground font-bold text-sm">
-          "Vamos viver a maior aventura juntos!" 👑🐾
-        </p>
+      </section>
+
+      <section className="grid grid-cols-2 gap-3 mb-4">
+        <div className="rounded-3xl bg-white p-3 shadow-soft flex items-center gap-2">
+          <CharacterAvatar id="sophie" size="lg" fullBody />
+          <div>
+            <p className="font-display font-extrabold text-sm">Princesa Sophie</p>
+            <p className="text-xs text-muted-foreground">Tranças rosas, coroa e coragem.</p>
+          </div>
+        </div>
+        <div className="rounded-3xl bg-white p-3 shadow-soft flex items-center gap-2">
+          <CharacterAvatar id="pix" size="lg" fullBody />
+          <div>
+            <p className="font-display font-extrabold text-sm">Pix Sabichão</p>
+            <p className="text-xs text-muted-foreground">Golden com óculos e dicas.</p>
+          </div>
+        </div>
       </section>
 
       {/* Status */}
@@ -69,13 +89,13 @@ function Home() {
       {/* Botões principais */}
       <section className="grid grid-cols-2 gap-3">
         <BigButton to="/mapa" icon={<Map className="w-6 h-6" />} label="Jogar" sub="Mapa dos Mundos" primary />
-        <BigButton to="/missao-dia" icon={<Calendar className="w-6 h-6" />} label="Missão do Dia" sub="5 perguntas" />
+        <BigButton to="/em-breve" icon={<Calendar className="w-6 h-6" />} label="Missão do Dia" sub="5 perguntas" />
         <BigButton to="/mapa" icon={<BookOpen className="w-6 h-6" />} label="Meus Mundos" sub={`${progress.medals.length}/9 conquistados`} />
-        <BigButton to="/progresso" icon={<TrendingUp className="w-6 h-6" />} label="Progresso" sub="Sua jornada" />
+        <BigButton to="/em-breve" icon={<Star className="w-6 h-6" />} label="Revisar" sub="Pratique mais!" />
         <BigButton to="/medalhas" icon={<Award className="w-6 h-6" />} label="Minhas Medalhas" sub="Coleção" />
-        <BigButton to="/avatar" icon={<Sparkles className="w-6 h-6" />} label="Avatar" sub="Closet Mágico" />
-        <BigButton to="/pais" icon={<ShieldCheck className="w-6 h-6" />} label="Área dos Pais" sub="Protegida" />
-        <BigButton to="/ajustes" icon={<Settings className="w-6 h-6" />} label="Configurações" sub="Sons, etc." />
+        <BigButton to="/avatar" icon={<Sparkles className="w-6 h-6" />} label="Avatar" sub="Personalize" />
+        <BigButton to="/em-breve" icon={<ShieldCheck className="w-6 h-6" />} label="Área dos Pais" sub="Protegida" />
+        <BigButton to="/em-breve" icon={<Settings className="w-6 h-6" />} label="Ajustes" sub="Sons, etc." />
       </section>
 
       <footer className="text-center text-xs text-muted-foreground mt-6">

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">As Aventuras da sophie</string>
+    <string name="title_activity_main">As Aventuras da sophie</string>
+    <string name="package_name">com.cassiotristao.sophiebalasco</string>
+    <string name="custom_url_scheme">com.cassiotristao.sophiebalasco</string>
+</resources>
