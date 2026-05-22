@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { worlds } from "@/data/worlds";
 import { characters } from "@/data/characters";
-import { useProgress, levelKey } from "@/hooks/use-progress";
+import { useProgress, levelKey, isWorldCompleted } from "@/hooks/use-progress";
 import { ArrowLeft, Lock, Star } from "lucide-react";
 
 export const Route = createFileRoute("/mapa")({
@@ -25,7 +25,7 @@ function MapaMundos() {
 
       <div className="space-y-3">
         {worlds.map((w, idx) => {
-          const prevDone = idx === 0 || progress.medals.includes(worlds[idx - 1].id);
+          const prevDone = idx === 0 || isWorldCompleted(progress, worlds[idx - 1].id);
           const completedLevels = w.levels.filter(l => progress.levels[levelKey(w.id, l.id)]?.completed).length;
           const stars = w.levels.reduce((s, l) => s + (progress.levels[levelKey(w.id, l.id)]?.stars ?? 0), 0);
           const pct = Math.round((completedLevels / w.levels.length) * 100);
@@ -49,6 +49,7 @@ function MapaMundos() {
                   </div>
                   <h3 className="font-display font-extrabold text-lg leading-tight">{w.name}</h3>
                   <p className="text-xs text-white/80">Guia: {guide.name}</p>
+                  {isWorldCompleted(progress, w.id) && <p className="text-xs font-bold mt-1">🏅 Mundo concluído!</p>}
                 </div>
                 <img src={guide.image} alt={guide.name} loading="lazy" className="w-16 h-16 object-contain drop-shadow-lg" />
               </div>

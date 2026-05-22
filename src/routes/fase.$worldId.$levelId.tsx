@@ -26,6 +26,7 @@ function FaseView() {
   const [showHint, setShowHint] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [pointsNoHint, setPointsNoHint] = useState(0);
+  const [hintsUsed, setHintsUsed] = useState(0);
   const [done, setDone] = useState(false);
 
   const q = level.questions[idx];
@@ -46,7 +47,12 @@ function FaseView() {
       const correct = correctCount;
       const pct = Math.round((correct / total) * 100);
       const coins = correct * 10 + pointsNoHint * 5 + (pct === 100 ? 50 : 0);
-      recordLevel(world!.id, level!.id, pct, coins);
+      recordLevel(world!.id, level!.id, pct, coins, {
+        correct,
+        wrong: total - correct,
+        hintsUsed,
+        noHintCorrect: pointsNoHint,
+      });
       setDone(true);
     } else {
       setIdx(i => i + 1);
@@ -84,7 +90,7 @@ function FaseView() {
         <div className="flex gap-2 w-full">
           <Link to="/mundo/$worldId" params={{ worldId: String(world.id) }}
             className="flex-1 py-3 rounded-2xl bg-white shadow-soft font-bold text-center">Voltar</Link>
-          <button onClick={() => { setIdx(0); setPicked(null); setCorrectCount(0); setPointsNoHint(0); setUsedHint(false); setShowHint(false); setDone(false); }}
+          <button onClick={() => { setIdx(0); setPicked(null); setCorrectCount(0); setPointsNoHint(0); setHintsUsed(0); setUsedHint(false); setShowHint(false); setDone(false); }}
             className="flex-1 py-3 rounded-2xl bg-gradient-magic text-primary-foreground shadow-magic font-bold">Jogar de novo</button>
         </div>
       </main>
@@ -149,7 +155,11 @@ function FaseView() {
       {/* Hint */}
       {picked === null && (
         <button
-          onClick={() => { setShowHint(true); setUsedHint(true); }}
+          onClick={() => {
+            if (!usedHint) setHintsUsed(h => h + 1);
+            setShowHint(true);
+            setUsedHint(true);
+          }}
           className="w-full flex items-center gap-2 rounded-2xl bg-gradient-sun p-3 font-bold text-accent-foreground shadow-soft active:scale-95"
         >
           <Lightbulb className="w-5 h-5" />

@@ -15,6 +15,8 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as EmBreveRouteImport } from './routes/em-breve'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MedalhasRouteImport } from './routes/medalhas'
+import { Route as AvatarRouteImport } from './routes/avatar'
 import { Route as MundoWorldIdRouteImport } from './routes/mundo.$worldId'
 import { Route as FaseWorldIdLevelIdRouteImport } from './routes/fase.$worldId.$levelId'
 
@@ -48,6 +50,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MedalhasRoute = MedalhasRouteImport.update({
+  id: '/medalhas',
+  path: '/medalhas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AvatarRoute = AvatarRouteImport.update({
+  id: '/avatar',
+  path: '/avatar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MundoWorldIdRoute = MundoWorldIdRouteImport.update({
   id: '/mundo/$worldId',
   path: '/mundo/$worldId',
@@ -65,6 +77,8 @@ export interface FileRoutesByFullPath {
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
+  '/medalhas': typeof MedalhasRoute
+  '/avatar': typeof AvatarRoute
   '/reset-password': typeof ResetPasswordRoute
   '/mundo/$worldId': typeof MundoWorldIdRoute
   '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
@@ -75,6 +89,8 @@ export interface FileRoutesByTo {
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
+  '/medalhas': typeof MedalhasRoute
+  '/avatar': typeof AvatarRoute
   '/reset-password': typeof ResetPasswordRoute
   '/mundo/$worldId': typeof MundoWorldIdRoute
   '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
@@ -86,6 +102,8 @@ export interface FileRoutesById {
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
+  '/medalhas': typeof MedalhasRoute
+  '/avatar': typeof AvatarRoute
   '/reset-password': typeof ResetPasswordRoute
   '/mundo/$worldId': typeof MundoWorldIdRoute
   '/fase/$worldId/$levelId': typeof FaseWorldIdLevelIdRoute
@@ -98,6 +116,8 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/login'
     | '/mapa'
+    | '/medalhas'
+    | '/avatar'
     | '/reset-password'
     | '/mundo/$worldId'
     | '/fase/$worldId/$levelId'
@@ -108,6 +128,8 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/login'
     | '/mapa'
+    | '/medalhas'
+    | '/avatar'
     | '/reset-password'
     | '/mundo/$worldId'
     | '/fase/$worldId/$levelId'
@@ -118,6 +140,8 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/login'
     | '/mapa'
+    | '/medalhas'
+    | '/avatar'
     | '/reset-password'
     | '/mundo/$worldId'
     | '/fase/$worldId/$levelId'
@@ -129,6 +153,8 @@ export interface RootRouteChildren {
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
   MapaRoute: typeof MapaRoute
+  MedalhasRoute: typeof MedalhasRoute
+  AvatarRoute: typeof AvatarRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   MundoWorldIdRoute: typeof MundoWorldIdRoute
   FaseWorldIdLevelIdRoute: typeof FaseWorldIdLevelIdRoute
@@ -155,6 +181,20 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medalhas': {
+      id: '/medalhas'
+      path: '/medalhas'
+      fullPath: '/medalhas'
+      preLoaderRoute: typeof MedalhasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/avatar': {
+      id: '/avatar'
+      path: '/avatar'
+      fullPath: '/avatar'
+      preLoaderRoute: typeof AvatarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forgot-password': {
@@ -201,6 +241,8 @@ const rootRouteChildren: RootRouteChildren = {
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
   MapaRoute: MapaRoute,
+  MedalhasRoute: MedalhasRoute,
+  AvatarRoute: AvatarRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   MundoWorldIdRoute: MundoWorldIdRoute,
   FaseWorldIdLevelIdRoute: FaseWorldIdLevelIdRoute,
